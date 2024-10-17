@@ -11,7 +11,7 @@ This project, despite being minimal, contains TLS, logging, URL parameter extrac
 
 Aside from Rust, this project depends on the axum-server, which requires installing [NASM](https://nasm.us/) and [CMake](cmake.org).
 
-It also requires setting up a TLS certificate. To create the required files, you may use [OpenSSL](openssl.org). The following interactive command will create the two required files (*key.pem* and *cert.pem*):
+It also requires setting up a TLS certificate. To create the necessary files, you may use [OpenSSL](openssl.org). The following interactive command will create the two files (*key.pem* and *cert.pem*):
 
     openssl req -newkey rsa:2048 -nodes -keyout key.pem -x509 -days 365 -out cert.pem
 
@@ -20,7 +20,7 @@ The server expects these two files inside the root folder. You can change this u
 ## Code
 Inside your endpoint, create an `Output::new()` object. You can `add` the data that you want to send, e.g. with a struct, and then call `respond()`. If there are any errors, you can `add_error` and set some information like title, detail, and source. You can keep adding more errors and end with a call to `respond()` as well.
 
-The `routes.rs` contains examples of three endpoints:
+The `routes.rs` contains examples of two endpoints:
 
 * `/fib?n=<n>`: Non-blocking, async calculation of the `n`-th fibonacci number. You can call it with e.g. n=40 and while it is running, call it again from a separate source with n=10. The n=10 should be almost instantaneous, showing the result before n=40 finishes.
 Any value higher than n=40 will result in an error.
